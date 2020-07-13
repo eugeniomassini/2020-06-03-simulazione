@@ -2,6 +2,8 @@ package it.polito.tdp.PremierLeague.model;
 
 import java.util.PriorityQueue;
 
+//CREARE GET DEGLI OUTPUT E RIPRENDERLI NEL MODEL
+
 public class Simulator {
 	
 //	CODA DEGLI EVENTI (SE SERVE)

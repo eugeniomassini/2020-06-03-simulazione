@@ -104,6 +104,9 @@ public class FXMLController {
 
 //		Copio pezzo da sopra in base al parametro
 		
+		//STAMPA DEL PARAMETRO DI PARTENZA
+//		txtResult.appendText(String.format("Traovati a partire da: %s", paramentroPartenza));
+		
 //		Scenario li stampo tutti
 		for(InfoQualcosa a: model.getVicini(parametro)) {
 			txtResult.appendText(String.format("%s\n", a));
@@ -118,7 +121,36 @@ public class FXMLController {
 	}
 	
 	@FXML
-	void doDreamTeam(ActionEvent event) {
+	void doEsplora(ActionEvent event) {
+		txtResult.clear();
+//		Avrò un punto di partenza e trovo tutti i collegati
+		
+//		CONTROLLI VARI
+		
+		if(campo == null) {
+			txtResult.setText("Errore");
+			return;
+		}
+		
+		for(Object o: model.getVicini(parametro)) {
+			txtResult.appendText(String.format("%s\n", o);
+		}
+		
+
+	}
+	
+	@FXML
+	void doSimulazione(ActionEvent event) {
+		
+//		OTTENGO I PARAMETRI DI PARTENZA
+		
+//		CONTROLLO I PARAMETRI
+		
+//		FACCIO PARTIRE IL SIMULATORE
+		model.runSim();
+		
+//		STAMPO I RISULTATI
+//		txtResult.appendText(String.format(format, args));
 
 	}
 

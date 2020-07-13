@@ -16,7 +16,9 @@ import org.jgrapht.graph.SimpleWeightedGraph;
 import org.jgrapht.traverse.BreadthFirstIterator;
 
 import it.polito.tdp.PremierLeague.db.PremierLeagueDAO;
-import it.polito.tdp.imdb.model.Actor;
+
+// SIMULAZIONE:
+//Creare get per dare in output al controller i risulati
 
 public class Model {
 
@@ -156,6 +158,29 @@ public class Model {
 		return result;
 	}
 	
+	public void runSim() {
+		
+		System.out.println("***FACCIO PARTIRE LA SIMULAZIONE***");
+		
+//		CREO IL SIMULATORE E PASSO I PARAMETRI DI SIMULAZIONE
+		
+		//Potrei dover passare modello e grafo
+		Simulator sim = new Simulator();
+		
+//		ESEGUO LA SIMULAZIONE
+		//Passo parametri per far partire la simulazione
+		sim.iniz();
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	public List<InfoPlayer> getTopPlayer() {
 
 		Player TopPlayer = null;
@@ -188,6 +213,4 @@ public class Model {
 		return output;
 	}
 
-	
-	
 }
