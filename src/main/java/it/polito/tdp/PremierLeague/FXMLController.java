@@ -5,9 +5,11 @@
 package it.polito.tdp.PremierLeague;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import it.polito.tdp.PremierLeague.model.InfoPlayer;
+import it.polito.tdp.PremierLeague.model.Match;
 import it.polito.tdp.PremierLeague.model.Model;
 import it.polito.tdp.PremierLeague.model.Player;
 import javafx.event.ActionEvent;
@@ -44,45 +46,79 @@ public class FXMLController {
 	@FXML // fx:id="txtResult"
 	private TextArea txtResult; // Value injected by FXMLLoader
 
+//	PRIMO METODO CREAGRAFO
+	
 	@FXML
 	void doCreaGrafo(ActionEvent event) {
 		txtResult.clear();
 
-		String goalS = txtGoals.getText();
-
-		double goal =0.0;
-		try {
-			goal = Double.parseDouble(goalS);
-		} catch (NumberFormatException e) {
-			txtResult.setText("Errore inserire un valore numerico minore di 1");
-			e.printStackTrace();
+//		Scenario parametro da inserire 
+		
+		/*
+		 * Match match = boxMatch.getValue(); 
+		 * Team team = boxTeam.getValue(); 
+		 * Player player = boxPlayer.getValue();
+		 */
+		
+		Object parametro = null;
+		if(parametro==null) {
+			txtResult.setText(String.format("Errore scegliere un valore nel box di %s", parametro.getClass()));
 			return;
 		}
+		
+//		model.creaGrafo(parametro);
+		
+//		Scenario conversione
+		
+		String stringaDaConvertire = txtGoals.getText();
 
-		model.creaGrafo(goal);
-
-	}
-
-	@FXML
-	void doDreamTeam(ActionEvent event) {
-
-	}
-
-	@FXML
-	void doTopPlayer(ActionEvent event) {
-		txtResult.clear();
+		double convertitoD =0.0;
+		int convertitoI =0;
 		
 		try {
-			txtResult.appendText(String.format("TOP PLAYER: %s\n\nAvversari Battuti:\n", model.getTopPlayer().get(0).getPlayer()));
-		} catch (Exception e) {
-			txtResult.setText("Errore inserire un valore numerico minore di 1 e creare grafo");
+			convertitoD = Double.parseDouble(stringaDaConvertire);
+		} catch (NumberFormatException e) {
+			txtResult.setText("Errore");
 			e.printStackTrace();
 			return;
 		}
 
-		for(int i=1; i<model.getTopPlayer().size(); i++) {
-			txtResult.appendText(String.format("%s\n", model.getTopPlayer().get(i)));
+		model.creaGrafo(convertitoD);
+		
+	}
+
+//	SECONDO METODO CERCARE QUALCOSA
+	
+	@FXML
+	void doStampaVicini(ActionEvent event) {
+		txtResult.clear();
+		
+//		Controllo se ho creato il grafo
+		
+		if(model.vertexSet().isEmpty() && model.edgeSet().isEmpty()) {
+			txtResult.setText("Errore, selezionare un valore e creare il grafo");
+			return;
 		}
+		
+//		Se l'ho creato cerco il vicino e ricontrollo l'errore
+
+//		Copio pezzo da sopra in base al parametro
+		
+//		Scenario li stampo tutti
+		for(InfoQualcosa a: model.getVicini(parametro)) {
+			txtResult.appendText(String.format("%s\n", a));
+		}
+		
+//		Scenario solo un numero N
+		int N = 5;
+		List <?> daStampare = model.getVicini(parametro);
+		for(int i=0; i<N; i++) {
+			txtResult.appendText(String.format("%s\n", daStampare.get(i));
+		}
+	}
+	
+	@FXML
+	void doDreamTeam(ActionEvent event) {
 
 	}
 
@@ -99,5 +135,6 @@ public class FXMLController {
 
 	public void setModel(Model model) {
 		this.model = model;
+		
 	}
 }
